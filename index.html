@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INARI CATERING | Capacitación BPM</title>
+  <style>
+    :root {
+      --brand: #1D2067;
+      --brand-dark: #14164a;
+      --brand-light: #eef0ff;
+      --accent: #f5b942;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --bg: #f7f8fc;
+      --white: #ffffff;
+      --danger: #b91c1c;
+      --danger-bg: #fee2e2;
+      --success-bg: #dcfce7;
+      --success-text: #166534;
+      --warning-bg: #fff7ed;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .content-section p,
+    .content-section li,
+    .hero-content p,
+    .info-card,
+    .participant-banner,
+    .mini-note {
+      text-align: justify;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: var(--white);
+      padding: 18px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .header-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-brand { display: flex; align-items: center; gap: 16px; }
+    .logo-card {
+      width: 76px;
+      height: 76px;
+      border-radius: 18px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+      flex: 0 0 auto;
+      overflow: hidden;
+    }
+    .logo-mark { width: 64px; height: 64px; display: block; object-fit: contain; }
+    .brand-block h1 { font-size: 1.85rem; letter-spacing: 0.04em; line-height: 1.1; }
+    .brand-block p { opacity: 0.9; font-size: 0.95rem; margin-top: 4px; }
+
+    .status-pill {
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    main { max-width: 1120px; margin: 0 auto; padding: 28px 18px 60px; }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .registration-page {
+      min-height: calc(100vh - 130px);
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .hero-content {
+      padding: 38px 36px;
+      background: radial-gradient(circle at top left, rgba(245,185,66,0.24), transparent 28%), linear-gradient(180deg, #ffffff, #f7f8fc);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(29,32,103,0.035));
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+      margin: 0 auto 18px;
+      overflow: visible;
+    }
+    .inari-logo-large { width: 150px; height: 150px; object-fit: contain; }
+    .eyebrow {
+      display: inline-flex;
+      color: var(--brand);
+      background: var(--brand-light);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 900;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    h2 { color: var(--brand); line-height: 1.15; }
+    .hero-content h2 { font-size: 3rem; margin-bottom: 16px; max-width: 520px; }
+    .subtitle { color: var(--text); font-size: 1rem; margin-bottom: 18px; }
+
+    .info-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+    .info-card { border: 1px solid #dfe3ec; border-radius: 12px; padding: 14px; background: rgba(255,255,255,0.88); min-height: 92px; }
+    .info-card strong { display: block; color: var(--brand); margin-bottom: 6px; }
+
+    .registration-form-panel {
+      padding: 42px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #24266c;
+    }
+    .form-card {
+      width: 100%;
+      max-width: 330px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 26px 22px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: none;
+      color: var(--white);
+    }
+    .form-card h3 { color: var(--white); font-size: 1.35rem; margin-bottom: 8px; }
+    .form-card p { color: rgba(255,255,255,0.82); margin-bottom: 18px; font-size: 0.82rem; font-weight: 700; }
+
+    label { display: block; font-weight: 900; color: var(--white); margin: 14px 0 6px; font-size: 0.78rem; }
+    input, select { width: 100%; border: 1px solid transparent; border-radius: 10px; padding: 10px 13px; font-size: 0.92rem; background: #fff; color: var(--text); }
+    input:focus, select:focus { outline: 3px solid rgba(245,185,66,0.34); border-color: var(--accent); }
+    .check-row { display: flex; gap: 9px; align-items: flex-start; margin: 13px 0; padding: 11px; border-radius: 10px; background: rgba(255,255,255,0.08); }
+    .check-row input { width: auto; margin-top: 4px; }
+    .check-row label { margin: 0; color: var(--white); font-weight: 800; font-size: 0.76rem; line-height: 1.35; }
+
+    button, .quiz-button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--brand);
+      color: var(--white);
+      padding: 13px 20px;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    #trainingForm button {
+      width: 100%;
+      background: var(--accent);
+      color: #071246;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 0.9rem;
+    }
+    button:hover, .quiz-button:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(29,32,103,0.22); }
+    #trainingForm button:hover { box-shadow: 0 10px 22px rgba(245,185,66,0.24); }
+    .message { margin-top: 14px; font-weight: 800; }
+
+    .participant-banner { background: var(--success-bg); color: var(--success-text); border: 1px solid #bbf7d0; border-radius: 18px; padding: 15px 18px; margin-bottom: 18px; }
+    .content-section { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 34px; margin-bottom: 18px; box-shadow: 0 12px 30px rgba(29,32,103,0.07); }
+    .section-title { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .number { width: 42px; height: 42px; border-radius: 14px; background: var(--brand); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-weight: 900; flex: 0 0 auto; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tile, .step, .case-card, .danger-card, .ok-card { border-radius: 18px; padding: 18px; }
+    .tile { border: 1px solid var(--line); background: #fbfbfe; }
+    .tile h4, .step h4, .case-card h4, .danger-card h4, .ok-card h4 { color: var(--brand); margin-bottom: 8px; text-transform: uppercase; font-size: 0.94rem; letter-spacing: 0.04em; }
+    ul, ol { padding-left: 22px; margin-top: 8px; }
+    li { margin-bottom: 9px; }
+
+    .scale { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .step { background: var(--brand-light); border: 1px solid #dfe2ff; }
+    .step span { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 50%; background: var(--brand); color: var(--white); font-weight: 900; margin-bottom: 12px; }
+
+    .important { margin-top: 18px; background: var(--warning-bg); border-left: 5px solid var(--accent); padding: 16px 18px; border-radius: 14px; font-weight: 700; }
+    .danger-card { background: var(--danger-bg); border: 1px solid #fecaca; }
+    .danger-card h4 { color: var(--danger); }
+    .ok-card { background: var(--success-bg); border: 1px solid #bbf7d0; }
+    .ok-card h4 { color: var(--success-text); }
+    .mini-note { color: var(--muted); font-size: .95rem; margin-top: 10px; }
+
+    .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .flow div { background: var(--brand-light); color: var(--brand); border: 1px solid #dfe2ff; border-radius: 14px; padding: 12px; font-weight: 800; text-align: center; }
+
+    .closing { text-align: center; background: linear-gradient(135deg, var(--brand), #2f3491); color: var(--white); padding: 46px 26px; }
+    .closing h2, .closing p, .closing li { color: var(--white); text-align: center; }
+    .closing .formula { font-size: 1.3rem; font-weight: 900; color: var(--accent); margin: 20px auto; max-width: 800px; text-align: center; }
+    .quiz-button-container { text-align: center; margin-top: 22px; }
+    footer { text-align: center; color: var(--muted); padding: 26px 18px 40px; font-size: 0.92rem; }
+
+    @media (max-width: 900px) {
+      .registration-page, .grid, .grid-3, .scale, .case-grid, .info-cards, .flow { grid-template-columns: 1fr; }
+      .hero-content, .registration-form-panel, section.content-section { padding: 24px; }
+      .header-brand { align-items: flex-start; }
+      .status-pill { width: 100%; }
+      .hero-logo, .inari-logo-large { width: 150px; height: 150px; }
+      .hero-content h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-wrap">
+      <div class="header-brand">
+        <div class="logo-card" aria-label="Logo INARI Catering & Alimentos"><img src="logo-inari.png" alt="Logo INARI Catering & Alimentos" class="logo-mark"></div>
+        <div class="brand-block"><h1>INARI CATERING</h1><p>Capacitación en línea | Buenas Prácticas de Manufactura</p></div>
+      </div>
+      <div class="status-pill" id="statusPill">Registro pendiente</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="pageRegistro">
+      <div class="registration-page">
+        <div class="hero-content"><div class="hero-inner">
+          <div class="hero-logo" aria-label="Logo INARI Catering & Alimentos"><img src="logo-inari.png" alt="Logo INARI Catering & Alimentos" class="inari-logo-large"></div>
+          <span class="eyebrow">Primera página | Registro obligatorio</span>
+          <h2>Programa integral de Buenas Prácticas de Manufactura</h2>
+          <p class="subtitle">Capacitación en línea sobre higiene, inocuidad alimentaria, manipulación segura y cumplimiento de Buenas Prácticas de Manufactura.</p>
+          <p>Para continuar con el contenido completo de la capacitación, primero debes registrar tus datos. Al confirmar el registro, avanzarás automáticamente a la siguiente página.</p>
+          <div class="info-cards">
+            <div class="info-card"><strong>Empresa</strong>INARI Catering & Alimentos</div>
+            <div class="info-card"><strong>Organización</strong>CORPAG S.A.</div>
+            <div class="info-card"><strong>Modalidad</strong>Capacitación en línea</div>
+            <div class="info-card"><strong>Tema</strong>Buenas Prácticas de Manufactura</div>
+          </div>
+        </div></div>
+
+        <div class="registration-form-panel">
+          <form class="form-card" id="trainingForm">
+            <h3>Registro del participante</h3><p>Completa todos los campos para habilitar el contenido de la capacitación.</p>
+            <label for="nombre">Nombre y Apellido</label><input type="text" id="nombre" name="nombre" placeholder="Ej. María González" required>
+            <label for="cedula">Número de cédula</label><input type="text" id="cedula" name="cedula" placeholder="Ej. 0912345678" required>
+            <label for="jornada">Jornada</label><select id="jornada" name="jornada" required><option value="">Seleccione una jornada</option><option>Medio Tiempo</option><option>Tiempo completo</option></select>
+            <label for="area">Área</label><select id="area" name="area" required><option value="">Seleccione un área</option><option>Servicio</option><option>Cocina</option><option>Servicio/Cocina</option><option>Administrativo</option><option>Operaciones</option></select>
+            <div class="check-row"><input type="checkbox" id="confirmacion" name="confirmacion" required><label for="confirmacion">Confirmo que he ingresado mis datos para fines de registro de capacitación.</label></div>
+            <button type="submit">Confirmar registro y continuar</button><div id="formMessage" class="message" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="pageContenido">
+      <div class="participant-banner" id="participantBanner"><strong>Participante registrado:</strong> capacitación habilitada.</div>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">1</span><h2>Introducción</h2></div>
+        <p>Las Buenas Prácticas de Manufactura son una base obligatoria para asegurar que los alimentos se reciban, almacenen, preparen, transporten y sirvan bajo condiciones seguras. En una operación de catering y alimentación colectiva, cada colaborador influye directamente en la inocuidad del producto final.</p>
+        <div class="important">La inocuidad no se presume: se controla, se registra y se demuestra con evidencia real.</div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">2</span><h2>Objetivos de aprendizaje</h2></div>
+        <ul>
+          <li>Comprender qué son las BPM y por qué son obligatorias dentro de la operación.</li>
+          <li>Identificar peligros de contaminación biológica, física y química.</li>
+          <li>Prevenir la contaminación cruzada durante la manipulación de alimentos.</li>
+          <li>Estandarizar higiene personal, uso de uniforme, lavado de manos y uso de guantes.</li>
+          <li>Aplicar controles de materias primas, rotulación, almacenamiento y FIFO/FEFO.</li>
+          <li>Fortalecer el manejo de desechos, limpieza, desinfección, registros y evidencias.</li>
+          <li>Reconocer errores comunes y corregirlos antes de que afecten al consumidor.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">3</span><h2>Marco de referencia</h2></div>
+        <div class="grid">
+          <div class="tile"><h4>Normativa y operación</h4><ul><li>Aplicación de buenas prácticas para establecimientos de alimentación colectiva.</li><li>Control sanitario orientado a prevenir riesgos para el consumidor.</li><li>Responsabilidad de cada colaborador en el cumplimiento de procedimientos internos.</li></ul></div>
+          <div class="tile"><h4>Referencias técnicas</h4><ul><li>Principios generales de higiene de los alimentos.</li><li>Procedimientos y registros internos de INARI.</li><li>Controles de inocuidad, disciplina, orden, limpieza y trazabilidad.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">4</span><h2>Manipulador de alimentos y BPM</h2></div>
+        <p>Un manipulador de alimentos es toda persona que interviene directa o indirectamente en la recepción, almacenamiento, preparación, empaque, transporte, servicio, limpieza o manejo de utensilios y superficies relacionadas con alimentos.</p>
+        <div class="grid">
+          <div class="tile"><h4>Actividades de manipulación</h4><ul><li>Recibir y verificar materias primas.</li><li>Almacenar, descongelar, lavar, cortar, cocinar y porcionar.</li><li>Armar dietas, empacar, transportar o servir alimentos.</li><li>Lavar utensilios, equipos o superficies de contacto.</li></ul></div>
+          <div class="tile"><h4>Buenas Prácticas de Manufactura</h4><ul><li>Conjunto de medidas preventivas para producir alimentos seguros.</li><li>Incluyen personas, instalaciones, equipos, agua, procesos, residuos, limpieza, plagas y registros.</li><li>Se aplican desde la recepción hasta el servicio final.</li><li>Evitan que un peligro llegue al consumidor.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">5</span><h2>Peligros de contaminación</h2></div>
+        <p>Los peligros pueden estar presentes en materias primas, superficies, utensilios, manos, ambiente, equipos o procesos. Identificarlos permite aplicar controles antes de que se conviertan en una contaminación real.</p>
+        <div class="scale">
+          <div class="step"><span>1</span><h4>Biológicos</h4><p>Microorganismos asociados a mala higiene, temperaturas incorrectas, contaminación cruzada, manipulación inadecuada o alimentos expuestos.</p></div>
+          <div class="step"><span>2</span><h4>Físicos</h4><p>Cabellos, fragmentos de vidrio, metal, plástico, grapas, piedras, astillas u objetos extraños que pueden caer en el alimento.</p></div>
+          <div class="step"><span>3</span><h4>Químicos</h4><p>Detergentes, desinfectantes, plaguicidas, lubricantes, químicos sin rotular o sustancias almacenadas cerca de alimentos.</p></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">6</span><h2>Contaminación cruzada</h2></div>
+        <p>La contaminación cruzada ocurre cuando microorganismos, sustancias químicas u objetos contaminantes pasan de una fuente sucia o cruda hacia un alimento seguro, listo para consumo o una superficie limpia.</p>
+        <div class="grid">
+          <div class="danger-card"><h4>Situaciones de riesgo</h4><ul><li>Usar el mismo cuchillo o tabla para crudos y cocidos.</li><li>Colocar alimentos listos para consumo junto a alimentos crudos.</li><li>Manipular basura, celular, rostro o cabello y luego tocar alimentos.</li><li>Limpiar con paños sucios o reutilizados indebidamente.</li><li>Almacenar químicos cerca de alimentos o utensilios.</li></ul></div>
+          <div class="ok-card"><h4>Cómo prevenirla</h4><ul><li>Separar alimentos crudos, cocidos y listos para consumo.</li><li>Usar utensilios limpios y diferenciados.</li><li>Lavarse las manos al cambiar de actividad.</li><li>Desinfectar superficies antes de volver a usarlas.</li><li>Mantener orden, rotulación y segregación en bodega y producción.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">7</span><h2>Lavado correcto de manos</h2></div>
+        <p>El lavado de manos es una barrera crítica para evitar contaminación biológica. Debe realizarse en los momentos obligatorios y con una técnica completa, no solo con un enjuague rápido.</p>
+        <div class="grid">
+          <div class="tile"><h4>Momentos obligatorios</h4><ul><li>Antes de iniciar labores.</li><li>Antes de manipular alimentos listos para consumo.</li><li>Después de usar el baño.</li><li>Después de manipular carnes o materias primas crudas.</li><li>Después de tocar basura, químicos, envases sucios o implementos de limpieza.</li><li>Después de toser, estornudar, tocar cabello, rostro o teléfono.</li><li>Al cambiar de una actividad contaminante a una actividad limpia.</li></ul></div>
+          <div class="tile"><h4>Técnica esperada</h4><ol><li>Mojar manos y antebrazos.</li><li>Aplicar jabón.</li><li>Frotar palmas, dorsos, entre dedos, uñas, pulgares y muñecas.</li><li>Enjuagar completamente.</li><li>Secar con material autorizado.</li><li>Evitar recontaminar las manos al cerrar grifos o tocar superficies sucias.</li></ol></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">8</span><h2>Uso correcto de guantes</h2></div>
+        <p>Los guantes no reemplazan el lavado de manos. Son una barrera adicional cuando la actividad lo requiere, pero pueden contaminarse igual que las manos si se usan incorrectamente.</p>
+        <div class="grid">
+          <div class="ok-card"><h4>Uso adecuado</h4><ul><li>Lavarse las manos antes de colocarlos.</li><li>Usarlos limpios, íntegros y del tamaño adecuado.</li><li>Cambiarlos al pasar de alimentos crudos a listos para consumo.</li><li>Cambiarlos si se rompen, ensucian o después de tocar superficies contaminadas.</li><li>Retirarlos correctamente y desecharlos cuando corresponda.</li></ul></div>
+          <div class="danger-card"><h4>Errores frecuentes</h4><ul><li>Usar los mismos guantes durante toda la jornada.</li><li>Tocar celular, cabello, rostro o basura y seguir manipulando alimentos.</li><li>Creer que usar guantes elimina la obligación de lavarse las manos.</li><li>Guardar guantes usados para reutilizarlos.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">9</span><h2>Reporte del estado de salud</h2></div>
+        <p>El personal debe reportar oportunamente síntomas, heridas o condiciones que puedan poner en riesgo la inocuidad. Ocultar una condición de salud puede causar contaminación y afectar a consumidores, compañeros y a la empresa.</p>
+        <ul>
+          <li>Reportar fiebre, vómito, diarrea, infecciones, lesiones, heridas expuestas o síntomas compatibles con enfermedad transmisible.</li>
+          <li>Proteger heridas con elementos autorizados y comunicar al responsable del área.</li>
+          <li>No manipular alimentos si la condición representa riesgo.</li>
+          <li>Seguir las indicaciones del supervisor o responsable de inocuidad.</li>
+        </ul>
+        <div class="important">Reportar no es una falta: es una responsabilidad preventiva.</div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">10</span><h2>Control de tiempo y temperatura</h2></div>
+        <p>El tiempo y la temperatura son controles esenciales para reducir el riesgo microbiológico. Los alimentos deben mantenerse bajo condiciones controladas desde la recepción hasta el servicio o transporte.</p>
+        <div class="grid">
+          <div class="tile"><h4>Qué controlar</h4><ul><li>Temperatura de recepción cuando aplique.</li><li>Almacenamiento en frío, congelación o caliente según el producto.</li><li>Tiempo de exposición fuera de condiciones seguras.</li><li>Temperatura durante cocción, enfriamiento, mantenimiento, despacho y transporte.</li><li>Registro de mediciones y acciones correctivas.</li></ul></div>
+          <div class="tile"><h4>Acciones preventivas</h4><ul><li>Usar equipos limpios y en buen estado.</li><li>No dejar alimentos expuestos innecesariamente.</li><li>Trabajar por lotes cuando sea necesario.</li><li>Reportar fallas de equipos de frío o caliente.</li><li>No mezclar producto nuevo con producto antiguo sin control.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">11</span><h2>Manejo de alérgenos</h2></div>
+        <p>Los alérgenos deben controlarse porque pequeñas cantidades pueden provocar reacciones en personas sensibles. La prevención requiere identificación, separación, limpieza y comunicación clara.</p>
+        <div class="grid">
+          <div class="tile"><h4>Controles básicos</h4><ul><li>Identificar ingredientes o preparaciones con potencial alergénico.</li><li>Evitar contacto cruzado entre alimentos con y sin alérgenos.</li><li>Usar utensilios y superficies limpias antes de preparar dietas especiales.</li><li>Rotular correctamente productos, preparaciones y dietas.</li><li>Comunicar cualquier duda antes de despachar o servir.</li></ul></div>
+          <div class="danger-card"><h4>No hacer</h4><ul><li>No improvisar sustituciones sin autorización.</li><li>No retirar un ingrediente visible y asumir que el alimento quedó seguro.</li><li>No mezclar utensilios de preparaciones distintas.</li><li>No entregar dietas sin verificar identificación.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">12</span><h2>Transporte y servicio seguro</h2></div>
+        <p>La inocuidad debe mantenerse después de la preparación. El transporte, despacho y servicio también forman parte de la cadena de control.</p>
+        <ul>
+          <li>Transportar alimentos protegidos, cerrados e identificados.</li>
+          <li>Mantener separación entre alimentos, químicos, residuos y materiales ajenos al servicio.</li>
+          <li>Controlar condiciones de temperatura durante el traslado cuando aplique.</li>
+          <li>Evitar exposición directa al ambiente, polvo, plagas o manipulación no autorizada.</li>
+          <li>Servir con utensilios limpios y prácticas higiénicas.</li>
+          <li>Reportar cualquier derrame, ruptura, contaminación o desviación durante el traslado.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">13</span><h2>Normas e higiene del personal</h2></div>
+        <div class="grid">
+          <div class="tile"><h4>Uniforme e imagen</h4><ul><li>Usar uniforme completo, limpio y en buen estado.</li><li>Mantener cabello cubierto durante la operación.</li><li>Usar implementos requeridos según el área y la tarea.</li><li>Mantener uñas limpias y presentación personal adecuada.</li><li>Evitar elementos que puedan caer, engancharse o contaminar.</li></ul></div>
+          <div class="danger-card"><h4>Conductas prohibidas</h4><ul><li>Usar joyas u objetos no permitidos en áreas de producción.</li><li>Comer, fumar, mascar chicle o beber en zonas no autorizadas.</li><li>Usar el teléfono en áreas de manipulación.</li><li>Toser o estornudar sobre alimentos o superficies.</li><li>Manipular alimentos sin reportar síntomas o heridas de riesgo.</li></ul></div>
+        </div>
+        <div class="important">La higiene personal es parte del control de inocuidad, no solo de la imagen del colaborador.</div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">14</span><h2>Manipulación de materias primas</h2></div>
+        <p>Las materias primas deben recibirse, revisarse, rotularse, almacenarse y utilizarse bajo criterios de seguridad. Un error al ingreso puede afectar toda la producción.</p>
+        <div class="grid">
+          <div class="tile"><h4>Recepción</h4><ul><li>Verificar proveedor, producto y cantidad recibida.</li><li>Revisar empaque, limpieza, integridad y condición general.</li><li>Confirmar fecha de vencimiento o vida útil cuando aplique.</li><li>Controlar temperatura en productos que lo requieran.</li><li>Separar y reportar producto no conforme.</li></ul></div>
+          <div class="tile"><h4>Almacenamiento</h4><ul><li>Ubicar cada producto en el área correspondiente.</li><li>Mantener alimentos protegidos, cerrados e identificados.</li><li>No colocar alimentos ni insumos directamente en el piso.</li><li>Separar crudos, cocidos, secos, refrigerados, congelados y químicos.</li><li>Mantener orden para facilitar limpieza, control y rotación.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">15</span><h2>FIFO / FEFO</h2></div>
+        <p>La rotación evita vencimientos, deterioro, desperdicios y uso de productos fuera de control. FIFO significa primero en entrar, primero en salir; FEFO prioriza el vencimiento más próximo.</p>
+        <div class="flow"><div>1. Recibir</div><div>2. Identificar</div><div>3. Ubicar</div><div>4. Consumir</div></div>
+		<div class="important">Si el producto nuevo queda adelante, FIFO se rompe.</div>
+        <div class="grid" style="margin-top:16px;">
+          <div class="ok-card"><h4>Buenas prácticas</h4><ul><li>Fechar productos al ingreso y al abrirlos.</li><li>Colocar adelante lo que debe usarse primero.</li><li>Verificar fechas antes de despachar o producir.</li><li>Registrar novedades de inventario.</li><li>Revisar fechas de forma rutinaria, no únicamente al recibir.</li></ul></div>
+          <div class="danger-card"><h4>Riesgos por mal control</h4><ul><li>Uso de producto vencido o deteriorado.</li><li>Pérdida de trazabilidad.</li><li>Contaminación por almacenamiento inadecuado.</li><li>Desperdicio por mala rotación.</li><li>Ocultar una fecha vencida o cambiar una etiqueta para extender uso.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">16</span><h2>Manejo de desechos</h2></div>
+        <p>Los desechos deben manejarse de forma ordenada para evitar contaminación, malos olores, presencia de plagas y afectación a las áreas de producción o servicio.</p>
+        <div class="grid">
+          <div class="tile"><h4>Prácticas obligatorias</h4><ul><li>Separar residuos de acuerdo con el sistema de colores definido.</li><li>Mantener recipientes identificados, limpios, tapados y con funda.</li><li>Retirar residuos con la frecuencia necesaria.</li><li>No permitir acumulación de basura en áreas de preparación, almacenamiento o servicio.</li><li>Lavarse las manos después de manipular residuos.</li></ul></div>
+          <div class="danger-card"><h4>Errores a evitar</h4><ul><li>Dejar tachos destapados.</li><li>Mezclar residuos sin control.</li><li>Colocar basura cerca de alimentos o utensilios limpios.</li><li>Manipular desechos y regresar a producción sin lavado de manos.</li><li>Permitir derrames, líquidos o residuos expuestos.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">17</span><h2>Limpieza y desinfección</h2></div>
+        <p>Limpiar y desinfectar no es lo mismo. La limpieza retira suciedad visible, grasa, restos de alimentos y residuos. La desinfección reduce microorganismos mediante productos y tiempos definidos.</p>
+        <div class="grid">
+          <div class="tile"><h4>Limpiar</h4><p>Retirar residuos visibles, suciedad y grasa de superficies, equipos, utensilios, pisos o áreas de trabajo.</p></div>
+          <div class="tile"><h4>Desinfectar</h4><p>Aplicar el desinfectante autorizado respetando concentración, método, tiempo de contacto y condiciones indicadas.</p></div>
+        </div>
+        <div class="flow"><div>Retirar residuos</div><div>Lavar</div><div>Enjuagar</div><div>Desinfectar</div><div>Registrar</div></div>
+        <div class="important">No se desinfecta correctamente una superficie sucia. Primero se limpia, luego se desinfecta y finalmente se registra.</div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">18</span><h2>Registros, controles y evidencia</h2></div>
+        <p>Los registros respaldan que la tarea fue realizada y permiten verificar el cumplimiento. Deben ser reales, legibles, completos y trazables.</p>
+        <ul>
+          <li>Registrar controles de recepción, temperatura, limpieza, desinfección, inventario y capacitación.</li>
+          <li>Completar los formatos en el momento correspondiente, no al final por memoria.</li>
+          <li>Reportar desviaciones, productos no conformes, fallas de equipo o condiciones inseguras.</li>
+          <li>Aplicar acciones correctivas y dejar evidencia de lo realizado.</li>
+          <li>Entender que firmar un registro confirma que la actividad fue ejecutada.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">19</span><h2>Errores comunes que deben corregirse</h2></div>
+        <div class="case-grid">
+          <div class="danger-card"><h4>En higiene personal</h4><ul><li>Lavado de manos incompleto.</li><li>Uso incorrecto o prolongado de guantes.</li><li>Uso de objetos personales en áreas de producción.</li><li>No reportar síntomas o heridas.</li></ul></div>
+          <div class="danger-card"><h4>En proceso</h4><ul><li>Mezclar crudos y cocidos.</li><li>Dejar alimentos expuestos.</li><li>No controlar tiempo y temperatura.</li><li>Usar utensilios o superficies sin higienizar.</li></ul></div>
+          <div class="danger-card"><h4>En bodega</h4><ul><li>Producto sin rotulación.</li><li>Producto directamente en piso.</li><li>Falta de FIFO/FEFO.</li><li>Químicos cerca de alimentos.</li></ul></div>
+          <div class="danger-card"><h4>En evidencia</h4><ul><li>Registros incompletos.</li><li>Firmas sin ejecución real.</li><li>Correcciones no reportadas.</li><li>Falta de seguimiento a desviaciones.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">20</span><h2>Evidencias reales de nuestra operación</h2></div>
+        <p>Las evidencias reales permiten reconocer desviaciones y convertirlas en aprendizaje. La finalidad no es señalar personas, sino corregir prácticas para proteger la inocuidad.</p>
+        <div class="case-grid">
+          <div class="case-card"><h4>Área desordenada</h4><p>El desorden dificulta la limpieza, impide verificar controles, favorece accidentes y aumenta el riesgo de contaminación.</p></div>
+          <div class="case-card"><h4>Producto sin identificación</h4><p>Todo alimento almacenado debe estar rotulado, fechado y ubicado correctamente para asegurar trazabilidad y rotación.</p></div>
+          <div class="case-card"><h4>Residuos mal manejados</h4><p>Los residuos expuestos o acumulados atraen plagas, generan olores y pueden contaminar superficies, utensilios o alimentos.</p></div>
+          <div class="case-card"><h4>Registro incompleto</h4><p>Si el control no se registra correctamente, no existe evidencia suficiente de que el procedimiento se cumplió.</p></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">21</span><h2>Lo que esperamos de cada colaborador</h2></div>
+        <ul>
+          <li>Trabajar con orden, higiene y responsabilidad durante toda la jornada.</li>
+          <li>Prevenir contaminación antes de que ocurra.</li>
+          <li>Cumplir procedimientos internos sin improvisar.</li>
+          <li>Registrar controles de forma real y completa.</li>
+          <li>Reportar riesgos, desviaciones, síntomas, fallas, plagas o productos no conformes.</li>
+          <li>Aplicar acciones correctivas cuando se detecte una condición insegura.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">22</span><h2>15 reglas que deben quedar grabadas</h2></div>
+        <div class="grid">
+          <ul><li>Uniforme completo.</li><li>Cabello cubierto.</li><li>Manos limpias.</li><li>Guantes bien usados.</li><li>No joyas ni hábitos contaminantes.</li><li>Reportar síntomas.</li><li>Separar crudo y cocido.</li><li>Controlar tiempo y temperatura.</li></ul>
+          <ul><li>Controlar alérgenos.</li><li>Rotular y fechar.</li><li>Aplicar FIFO/FEFO.</li><li>Nada directamente en el piso.</li><li>Desechos separados y tachos tapados.</li><li>Limpiar antes de desinfectar.</li><li>Registrar lo que realmente se hizo.</li></ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">23</span><h2>Compromiso BPM INARI</h2></div>
+        <p>El cumplimiento de las BPM exige disciplina operativa. Cada colaborador debe comprometerse a aplicar lo aprendido y a corregir inmediatamente las prácticas que puedan afectar la inocuidad.</p>
+        <ul>
+          <li>Mantener orden y limpieza durante toda la jornada.</li>
+          <li>Proteger, identificar y fechar correctamente los alimentos.</li>
+          <li>Respetar PEPS/PCPS, FIFO/FEFO y la segregación de materias primas.</li>
+          <li>Evitar cualquier práctica que pueda generar contaminación cruzada.</li>
+          <li>Reportar inmediatamente derrames, plagas, productos deteriorados, síntomas o condiciones inseguras.</li>
+          <li>Cumplir los procedimientos, registros y controles establecidos por INARI.</li>
+        </ul>
+      </section>
+
+      <section class="content-section closing">
+        <h2>Cierre de capacitación</h2>
+        <p>Las BPM no son una actividad adicional: son la forma correcta de trabajar todos los días.</p>
+        <p class="formula">ORDEN + HIGIENE + CONTROL + REGISTROS REALES + RESPONSABILIDAD = ALIMENTOS SEGUROS</p>
+        <p>La inocuidad no depende de una sola persona. Depende de todos.</p>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">24</span><h2>Prueba de capacitación</h2></div>
+        <div class="important">Al continuar, iniciarás el proceso de prueba sobre lo revisado en este contenido. Asegúrate de registrar tus datos y respuestas correctamente.</div>
+        <div class="quiz-button-container">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSewNEurcj7Cihi2JGrt10FnDH1rfyExFzJTPL58rISNejZWcA/viewform?usp=publish-editor" class="quiz-button" target="_blank" rel="noopener noreferrer">Ir a la prueba</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>Material de capacitación interna basado en el Programa Integral de Buenas Prácticas de Manufactura de INARI Catering & Alimentos.</footer>
+
+  <script>
+    const form = document.getElementById('trainingForm');
+    const message = document.getElementById('formMessage');
+    const pageRegistro = document.getElementById('pageRegistro');
+    const pageContenido = document.getElementById('pageContenido');
+    const statusPill = document.getElementById('statusPill');
+    const participantBanner = document.getElementById('participantBanner');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const data = {
+        nombre: document.getElementById('nombre').value.trim(),
+        cedula: document.getElementById('cedula').value.trim(),
+        jornada: document.getElementById('jornada').value,
+        area: document.getElementById('area').value,
+        confirmacion: document.getElementById('confirmacion').checked,
+        fechaRegistro: new Date().toLocaleString('es-EC')
+      };
+
+      if (!data.nombre || !data.cedula || !data.jornada || !data.area || !data.confirmacion) {
+        message.className = 'message error';
+        message.textContent = 'Debes completar todos los campos obligatorios antes de continuar.';
+        return;
+      }
+
+      message.className = 'message ok';
+      message.textContent = 'Registro confirmado. Cargando la capacitación...';
+
+      setTimeout(function() {
+        pageRegistro.classList.remove('active');
+        pageContenido.classList.add('active');
+        statusPill.textContent = 'Registro confirmado';
+        participantBanner.innerHTML = '<strong>Participante registrado:</strong> ' + data.nombre + ' | Cédula: ' + data.cedula + ' | Jornada: ' + data.jornada + ' | Área: ' + data.area + ' | Fecha: ' + data.fechaRegistro;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 450);
+    });
+  </script>
+</body>
+</html>
