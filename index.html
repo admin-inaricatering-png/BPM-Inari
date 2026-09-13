@@ -237,6 +237,22 @@
     .quiz-button-container { text-align: center; margin-top: 22px; }
     footer { text-align: center; color: var(--muted); padding: 26px 18px 40px; font-size: 0.92rem; }
 
+    /* Estilos para tablas de colores y evidencias */
+    .color-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .color-table td { padding: 12px; border: 1px solid var(--line); vertical-align: middle; }
+    .color-box { width: 40px; height: 40px; border-radius: 8px; display: inline-block; margin-right: 10px; vertical-align: middle; }
+    .color-azul { background: #0070c0; }
+    .color-negro { background: #333333; }
+    .color-verde { background: #00b050; }
+    .color-rojo { background: #c00000; }
+    .color-naranja { background: #ed7d31; }
+
+    .evidence-card { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: #fbfbfe; display: flex; flex-direction: column; gap: 12px; }
+    .evidence-card img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); object-fit: cover; max-height: 220px; }
+    .evidence-card h4 { color: var(--brand); margin-bottom: 0; }
+    .evidence-card .error-text { color: var(--danger); font-weight: 700; }
+    .evidence-card .correct-text { color: var(--success-text); font-weight: 700; }
+
     @media (max-width: 900px) {
       .registration-page, .grid, .grid-3, .scale, .case-grid, .info-cards, .flow { grid-template-columns: 1fr; }
       .hero-content, .registration-form-panel, section.content-section { padding: 24px; }
@@ -244,6 +260,7 @@
       .status-pill { width: 100%; }
       .hero-logo, .inari-logo-large { width: 150px; height: 150px; }
       .hero-content h2 { font-size: 2rem; }
+      .color-table td { display: block; width: 100%; }
     }
   </style>
 </head>
@@ -308,6 +325,7 @@
           <li>Aplicar controles de materias primas, rotulación, almacenamiento y FIFO/FEFO.</li>
           <li>Fortalecer el manejo de desechos, limpieza, desinfección, registros y evidencias.</li>
           <li>Reconocer errores comunes y corregirlos antes de que afecten al consumidor.</li>
+          <li>Conocer las consecuencias internas del incumplimiento de los procedimientos.</li>
         </ul>
       </section>
 
@@ -315,7 +333,7 @@
         <div class="section-title"><span class="number">3</span><h2>Marco de referencia</h2></div>
         <div class="grid">
           <div class="tile"><h4>Normativa y operación</h4><ul><li>Aplicación de buenas prácticas para establecimientos de alimentación colectiva.</li><li>Control sanitario orientado a prevenir riesgos para el consumidor.</li><li>Responsabilidad de cada colaborador en el cumplimiento de procedimientos internos.</li></ul></div>
-          <div class="tile"><h4>Referencias técnicas</h4><ul><li>Principios generales de higiene de los alimentos.</li><li>Procedimientos y registros internos de INARI.</li><li>Controles de inocuidad, disciplina, orden, limpieza y trazabilidad.</li></ul></div>
+          <div class="tile"><h4>Referencias técnicas</h4><ul><li>Principios generales de higiene de los alimentos.</li><li>Procedimientos y registros internos de INARI.</li><li>Controles de inocuidad, disciplina, orden, limpieza y trazabilidad.</li><li>Separación de residuos con referencia a NTE INEN 2841.</li><li>Reglamento Interno para disciplina y cumplimiento.</li></ul></div>
         </div>
       </section>
 
@@ -373,6 +391,7 @@
           <li>Proteger heridas con elementos autorizados y comunicar al responsable del área.</li>
           <li>No manipular alimentos si la condición representa riesgo.</li>
           <li>Seguir las indicaciones del supervisor o responsable de inocuidad.</li>
+          <li>La inocuidad del comensal está por encima de la presión por "cumplir el turno".</li>
         </ul>
         <div class="important">Reportar no es una falta: es una responsabilidad preventiva.</div>
       </section>
@@ -387,78 +406,125 @@
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">11</span><h2>Manejo de alérgenos</h2></div>
-        <p>Los alérgenos deben controlarse porque pequeñas cantidades pueden provocar reacciones en personas sensibles. La prevención requiere identificación, separación, limpieza y comunicación clara.</p>
+        <div class="section-title"><span class="number">11</span><h2>Uso correcto del termómetro</h2></div>
+        <p>La medición de temperatura debe ser confiable para que el control sea real. Un termómetro mal usado o sucio puede dar lecturas falsas o contaminar el alimento.</p>
         <div class="grid">
-          <div class="tile"><h4>Controles básicos</h4><ul><li>Identificar ingredientes o preparaciones con potencial alergénico.</li><li>Evitar contacto cruzado entre alimentos con y sin alérgenos.</li><li>Usar utensilios y superficies limpias antes de preparar dietas especiales.</li><li>Rotular correctamente productos, preparaciones y dietas.</li><li>Comunicar cualquier duda antes de despachar o servir.</li></ul></div>
-          <div class="danger-card"><h4>No hacer</h4><ul><li>No improvisar sustituciones sin autorización.</li><li>No retirar un ingrediente visible y asumir que el alimento quedó seguro.</li><li>No mezclar utensilios de preparaciones distintas.</li><li>No entregar dietas sin verificar identificación.</li></ul></div>
+          <div class="ok-card"><h4>Procedimiento correcto</h4><ul><li>Verificar que el equipo funcione correctamente.</li><li>Higienizar la sonda antes y después del uso.</li><li>Medir en una zona representativa del alimento, evitando tocar el recipiente.</li><li>Esperar a que la lectura sea estable.</li><li>Registrar inmediatamente el valor real.</li><li>Reportar termómetros dañados o lecturas dudosas.</li></ul></div>
+          <div class="danger-card"><h4>Errores a evitar</h4><ul><li>Completar valores "de memoria" en los registros.</li><li>Usar termómetros sucios o sin higienizar entre mediciones.</li><li>Medir en zonas que no representan la temperatura real del alimento.</li><li>No reportar desviaciones ni aplicar acciones correctivas.</li></ul></div>
         </div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">12</span><h2>Transporte y servicio seguro</h2></div>
+        <div class="section-title"><span class="number">12</span><h2>Manejo de alérgenos</h2></div>
+        <p>Los alérgenos deben controlarse porque pequeñas cantidades pueden provocar reacciones en personas sensibles. La prevención requiere identificación, separación, limpieza y comunicación clara.</p>
+        <div class="grid">
+          <div class="tile"><h4>Controles básicos</h4><ul><li>Identificar ingredientes o preparaciones con potencial alergénico.</li><li>Evitar contacto cruzado entre alimentos con y sin alérgenos.</li><li>Usar utensilios y superficies limpias antes de preparar dietas especiales.</li><li>Rotular correctamente productos, preparaciones y dietas.</li><li>Leer la indicación antes de preparar.</li><li>Comunicar cualquier duda antes de despachar o servir.</li></ul></div>
+          <div class="danger-card"><h4>No hacer</h4><ul><li>No improvisar sustituciones sin autorización.</li><li>No retirar un ingrediente visible y asumir que el alimento quedó seguro.</li><li>No mezclar utensilios de preparaciones distintas.</li><li>No entregar dietas sin verificar identificación.</li><li>Ante duda: detener y consultar.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">13</span><h2>Transporte y servicio seguro</h2></div>
         <p>La inocuidad debe mantenerse después de la preparación. El transporte, despacho y servicio también forman parte de la cadena de control.</p>
         <ul>
+          <li>Vehículos y contenedores deben mantenerse limpios y aptos para transportar alimentos.</li>
           <li>Transportar alimentos protegidos, cerrados e identificados.</li>
           <li>Mantener separación entre alimentos, químicos, residuos y materiales ajenos al servicio.</li>
           <li>Controlar condiciones de temperatura durante el traslado cuando aplique.</li>
           <li>Evitar exposición directa al ambiente, polvo, plagas o manipulación no autorizada.</li>
+          <li>Evitar colocar alimentos directamente en pisos o superficies contaminadas.</li>
           <li>Servir con utensilios limpios y prácticas higiénicas.</li>
-          <li>Reportar cualquier derrame, ruptura, contaminación o desviación durante el traslado.</li>
+          <li>Reportar demoras, derrames, rupturas o fallas que comprometan la calidad.</li>
         </ul>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">13</span><h2>Normas e higiene del personal</h2></div>
+        <div class="section-title"><span class="number">14</span><h2>Normas e higiene del personal</h2></div>
         <div class="grid">
-          <div class="tile"><h4>Uniforme e imagen</h4><ul><li>Usar uniforme completo, limpio y en buen estado.</li><li>Mantener cabello cubierto durante la operación.</li><li>Usar implementos requeridos según el área y la tarea.</li><li>Mantener uñas limpias y presentación personal adecuada.</li><li>Evitar elementos que puedan caer, engancharse o contaminar.</li></ul></div>
-          <div class="danger-card"><h4>Conductas prohibidas</h4><ul><li>Usar joyas u objetos no permitidos en áreas de producción.</li><li>Comer, fumar, mascar chicle o beber en zonas no autorizadas.</li><li>Usar el teléfono en áreas de manipulación.</li><li>Toser o estornudar sobre alimentos o superficies.</li><li>Manipular alimentos sin reportar síntomas o heridas de riesgo.</li></ul></div>
+          <div class="tile"><h4>Uniforme e imagen</h4><ul><li>Usar uniforme completo, limpio y en buen estado.</li><li>Mantener cabello totalmente cubierto con el elemento definido.</li><li>Usar calzado cerrado y apropiado.</li><li>Usar mandil, mascarilla, guantes u otros implementos cuando correspondan.</li><li>Mantener uñas cortas, limpias y sin esmalte.</li><li>No usar uñas postizas durante manipulación.</li><li>Evitar anillos, pulseras, relojes, collares u otros objetos que puedan contaminar o caer al alimento.</li><li>No manipular alimentos con heridas expuestas.</li></ul></div>
+          <div class="danger-card"><h4>Conductas prohibidas</h4><ul><li>Fumar.</li><li>Comer o mascar chicle durante manipulación.</li><li>Escupir.</li><li>Toser o estornudar sobre alimentos.</li><li>Tocarse repetidamente cara o cabello y continuar trabajando sin higiene de manos.</li><li>Usar el teléfono y volver a manipular alimentos sin lavado de manos.</li><li>Guardar objetos personales en zonas de producción.</li><li>No ingresar a producción incompleto "solo por un momento".</li></ul></div>
         </div>
-        <div class="important">La higiene personal es parte del control de inocuidad, no solo de la imagen del colaborador.</div>
+        <div class="important">INCUMPLIR EL UNIFORME = INCUMPLIR UNA NORMA DE INOCUIDAD.</div>
+        <div class="important">El celular es una superficie de alto contacto y puede contaminar las manos. Mantenerlo fuera de zonas de manipulación salvo uso autorizado por trabajo.</div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">14</span><h2>Manipulación de materias primas</h2></div>
+        <div class="section-title"><span class="number">15</span><h2>Manipulación de materias primas</h2></div>
         <p>Las materias primas deben recibirse, revisarse, rotularse, almacenarse y utilizarse bajo criterios de seguridad. Un error al ingreso puede afectar toda la producción.</p>
         <div class="grid">
-          <div class="tile"><h4>Recepción</h4><ul><li>Verificar proveedor, producto y cantidad recibida.</li><li>Revisar empaque, limpieza, integridad y condición general.</li><li>Confirmar fecha de vencimiento o vida útil cuando aplique.</li><li>Controlar temperatura en productos que lo requieran.</li><li>Separar y reportar producto no conforme.</li></ul></div>
-          <div class="tile"><h4>Almacenamiento</h4><ul><li>Ubicar cada producto en el área correspondiente.</li><li>Mantener alimentos protegidos, cerrados e identificados.</li><li>No colocar alimentos ni insumos directamente en el piso.</li><li>Separar crudos, cocidos, secos, refrigerados, congelados y químicos.</li><li>Mantener orden para facilitar limpieza, control y rotación.</li></ul></div>
+          <div class="tile"><h4>Recepción</h4><ul><li>Verificar proveedor, producto y cantidad recibida.</li><li>Revisar empaque, limpieza, integridad y condición general.</li><li>Confirmar fecha de vencimiento o vida útil cuando aplique.</li><li>Controlar temperatura en productos que lo requieran.</li><li>Separar y reportar producto no conforme.</li><li>Registrar novedades antes de almacenar.</li></ul></div>
+          <div class="tile"><h4>Almacenamiento</h4><ul><li>Ubicar cada producto en el área correspondiente.</li><li>Mantener alimentos protegidos, cerrados e identificados.</li><li>No colocar alimentos ni insumos directamente en el piso.</li><li>Separar crudos, cocidos, secos, refrigerados, congelados y químicos.</li><li>Mantener estanterías limpias y organizadas.</li><li>Evitar sobrecarga y facilitar inspección y limpieza.</li></ul></div>
+        </div>
+        <div class="danger-card" style="margin-top:16px;"><h4>Criterios para NO aceptar un producto</h4><ul><li>Envases hinchados, oxidados, abiertos, rotos o con fugas.</li><li>Productos con olor, color o textura anormal.</li><li>Presencia de plagas, suciedad o humedad inusual.</li><li>Caducidad vencida o identificación ilegible.</li><li>Cadena de frío comprometida cuando aplique.</li><li>Producto diferente al solicitado o sin condiciones para trazabilidad.</li></ul></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">16</span><h2>Identificación y rotulación</h2></div>
+        <p>Todo producto abierto, fraccionado o preparado debe estar identificado para asegurar su trazabilidad y correcta rotación.</p>
+        <div class="grid">
+          <div class="tile"><h4>Qué debe incluir una etiqueta</h4><ul><li>Nombre del producto.</li><li>Fecha de recepción, apertura, preparación o vencimiento interno.</li><li>Responsable.</li><li>Usar etiquetas legibles y resistentes a las condiciones del área.</li></ul></div>
+          <div class="danger-card"><h4>Errores a evitar</h4><ul><li>No conservar recipientes "misteriosos" sin nombre o fecha.</li><li>No usar fundas anónimas sin identificación.</li><li>Si no se puede identificar con seguridad, reportar antes de utilizar.</li><li>No cambiar una etiqueta para extender uso.</li></ul></div>
         </div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">15</span><h2>FIFO / FEFO</h2></div>
+        <div class="section-title"><span class="number">17</span><h2>FIFO / FEFO</h2></div>
         <p>La rotación evita vencimientos, deterioro, desperdicios y uso de productos fuera de control. FIFO significa primero en entrar, primero en salir; FEFO prioriza el vencimiento más próximo.</p>
         <div class="flow"><div>1. Recibir</div><div>2. Identificar</div><div>3. Ubicar</div><div>4. Consumir</div></div>
 		<div class="important">Si el producto nuevo queda adelante, FIFO se rompe.</div>
         <div class="grid" style="margin-top:16px;">
-          <div class="ok-card"><h4>Buenas prácticas</h4><ul><li>Fechar productos al ingreso y al abrirlos.</li><li>Colocar adelante lo que debe usarse primero.</li><li>Verificar fechas antes de despachar o producir.</li><li>Registrar novedades de inventario.</li><li>Revisar fechas de forma rutinaria, no únicamente al recibir.</li></ul></div>
-          <div class="danger-card"><h4>Riesgos por mal control</h4><ul><li>Uso de producto vencido o deteriorado.</li><li>Pérdida de trazabilidad.</li><li>Contaminación por almacenamiento inadecuado.</li><li>Desperdicio por mala rotación.</li><li>Ocultar una fecha vencida o cambiar una etiqueta para extender uso.</li></ul></div>
+          <div class="ok-card"><h4>Buenas prácticas</h4><ul><li>Revisar existencias antes de guardar producto nuevo.</li><li>Colocar el producto más antiguo en posición de uso prioritario.</li><li>Ubicar nuevas recepciones detrás o en la posición definida.</li><li>Revisar fechas antes de abrir una nueva unidad.</li><li>Revisar fechas de forma rutinaria, no únicamente al recibir.</li><li>Separar oportunamente productos vencidos o no conformes.</li></ul></div>
+          <div class="danger-card"><h4>Riesgos por mal control</h4><ul><li>Vencimiento por mala rotación.</li><li>Unidades abiertas duplicadas.</li><li>Productos sin etiqueta.</li><li>Derrames o envases mal cerrados.</li><li>Consumo o retiro no autorizado.</li><li>Compras innecesarias por no revisar stock.</li><li>Faltantes descubiertos demasiado tarde.</li><li>Ocultar una fecha vencida o cambiar una etiqueta para extender uso.</li></ul></div>
         </div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">16</span><h2>Manejo de desechos</h2></div>
+        <div class="section-title"><span class="number">18</span><h2>Control de bodega</h2></div>
+        <p>La bodega es un área controlada. Cada ingreso, salida, fecha y ubicación importa.</p>
+        <div class="grid">
+          <div class="tile"><h4>Al entrar</h4><ul><li>Acceso conforme a las reglas internas.</li><li>No entrar para buscar productos personales o sin una necesidad operativa.</li></ul></div>
+          <div class="tile"><h4>Al retirar</h4><ul><li>Sacar únicamente lo requerido/autorizado.</li><li>Registrar las salidas según el control definido.</li></ul></div>
+          <div class="tile"><h4>Al devolver</h4><ul><li>Producto no usado vuelve correctamente identificado, cerrado y ubicado.</li><li>No dejarlo en cualquier estante.</li></ul></div>
+          <div class="tile"><h4>Trazabilidad</h4><ul><li>Definir quién puede retirar productos.</li><li>Registrar cantidades y destino cuando el control interno lo requiera.</li><li>Evitar abrir múltiples unidades iguales sin necesidad.</li><li>Reportar diferencias de inventario.</li><li>No esconder producto ni cambiarlo de ubicación sin informar.</li></ul></div>
+        </div>
+        <div class="important">"NO SE AGARRA LO QUE A CADA UNO LE DA LA GANA."</div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">19</span><h2>Manejo de desechos</h2></div>
         <p>Los desechos deben manejarse de forma ordenada para evitar contaminación, malos olores, presencia de plagas y afectación a las áreas de producción o servicio.</p>
         <div class="grid">
-          <div class="tile"><h4>Prácticas obligatorias</h4><ul><li>Separar residuos de acuerdo con el sistema de colores definido.</li><li>Mantener recipientes identificados, limpios, tapados y con funda.</li><li>Retirar residuos con la frecuencia necesaria.</li><li>No permitir acumulación de basura en áreas de preparación, almacenamiento o servicio.</li><li>Lavarse las manos después de manipular residuos.</li></ul></div>
-          <div class="danger-card"><h4>Errores a evitar</h4><ul><li>Dejar tachos destapados.</li><li>Mezclar residuos sin control.</li><li>Colocar basura cerca de alimentos o utensilios limpios.</li><li>Manipular desechos y regresar a producción sin lavado de manos.</li><li>Permitir derrames, líquidos o residuos expuestos.</li></ul></div>
+          <div class="tile"><h4>Prácticas obligatorias</h4><ul><li>Clasificar el residuo en el momento y lugar donde se genera.</li><li>Mantener recipientes identificados, limpios, tapados y con funda.</li><li>Retirar residuos con la frecuencia necesaria, antes de que el recipiente rebose.</li><li>No permitir acumulación de basura en áreas de preparación, almacenamiento o servicio.</li><li>Lavarse las manos después de manipular residuos.</li><li>Lavar y desinfectar los recipientes con la frecuencia definida.</li></ul></div>
+          <div class="danger-card"><h4>Errores a evitar</h4><ul><li>Dejar tachos destapados.</li><li>Mezclar residuos sin control.</li><li>Colocar basura cerca de alimentos o utensilios limpios.</li><li>Manipular desechos y regresar a producción sin lavado de manos.</li><li>Permitir derrames, líquidos o residuos expuestos.</li><li>Dejar la basura acumulada al finalizar el turno.</li></ul></div>
         </div>
+        <h4 style="margin-top:20px; color:var(--brand);">Código de colores para separación de residuos (NTE INEN 2841:2014)</h4>
+        <table class="color-table">
+          <tr><td><span class="color-box color-azul"></span> <strong>Azul:</strong> Reciclables</td></tr>
+          <tr><td><span class="color-box color-negro"></span> <strong>Negro:</strong> No reciclables / No peligrosos</td></tr>
+          <tr><td><span class="color-box color-verde"></span> <strong>Verde:</strong> Orgánicos</td></tr>
+          <tr><td><span class="color-box color-rojo"></span> <strong>Rojo:</strong> Peligrosos</td></tr>
+          <tr><td><span class="color-box color-naranja"></span> <strong>Anaranjado:</strong> Especiales</td></tr>
+        </table>
+        <div class="important">Referencia de capacitación: NTE INEN 2841:2014. Aplicar además la identificación y procedimiento definidos en cada punto de INARI.</div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">17</span><h2>Limpieza y desinfección</h2></div>
+        <div class="section-title"><span class="number">20</span><h2>Limpieza y desinfección</h2></div>
         <p>Limpiar y desinfectar no es lo mismo. La limpieza retira suciedad visible, grasa, restos de alimentos y residuos. La desinfección reduce microorganismos mediante productos y tiempos definidos.</p>
         <div class="grid">
-          <div class="tile"><h4>Limpiar</h4><p>Retirar residuos visibles, suciedad y grasa de superficies, equipos, utensilios, pisos o áreas de trabajo.</p></div>
-          <div class="tile"><h4>Desinfectar</h4><p>Aplicar el desinfectante autorizado respetando concentración, método, tiempo de contacto y condiciones indicadas.</p></div>
+          <div class="tile"><h4>Limpiar</h4><p>Retirar residuos visibles, suciedad y grasa de superficies, equipos, utensilios, pisos o áreas de trabajo. Usa detergente y acción mecánica según procedimiento. Es necesaria antes de desinfectar.</p></div>
+          <div class="tile"><h4>Desinfectar</h4><p>Aplicar el desinfectante autorizado respetando concentración, método, tiempo de contacto y condiciones indicadas. Se aplica sobre una superficie previamente limpia.</p></div>
         </div>
         <div class="flow"><div>Retirar residuos</div><div>Lavar</div><div>Enjuagar</div><div>Desinfectar</div><div>Registrar</div></div>
         <div class="important">No se desinfecta correctamente una superficie sucia. Primero se limpia, luego se desinfecta y finalmente se registra.</div>
+        <div class="grid" style="margin-top:16px;">
+          <div class="tile"><h4>Preguntas clave del procedimiento</h4><ul><li>¿QUÉ se limpia? Área, equipo, utensilio o superficie.</li><li>¿CÓMO? Método paso a paso.</li><li>¿CON QUÉ? Detergente/desinfectante y utensilios autorizados.</li><li>¿CUÁNDO? Frecuencia: durante turno, diaria, semanal, mensual, etc.</li><li>¿QUIÉN? Responsable definido.</li><li>¿CÓMO SE VERIFICA? Inspección, checklist, evidencia o control establecido.</li></ul></div>
+          <div class="danger-card"><h4>Manejo de químicos</h4><ul><li>Mantener químicos identificados y separados de alimentos.</li><li>No usar botellas de bebidas para almacenar químicos.</li><li>No mezclar productos químicos.</li><li>No improvisar concentraciones.</li><li>Usar EPP requerido.</li><li>Reportar derrames o exposición accidental.</li></ul></div>
+        </div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">18</span><h2>Registros, controles y evidencia</h2></div>
+        <div class="section-title"><span class="number">21</span><h2>Registros, controles y evidencia</h2></div>
         <p>Los registros respaldan que la tarea fue realizada y permiten verificar el cumplimiento. Deben ser reales, legibles, completos y trazables.</p>
         <ul>
           <li>Registrar controles de recepción, temperatura, limpieza, desinfección, inventario y capacitación.</li>
@@ -466,44 +532,146 @@
           <li>Reportar desviaciones, productos no conformes, fallas de equipo o condiciones inseguras.</li>
           <li>Aplicar acciones correctivas y dejar evidencia de lo realizado.</li>
           <li>Entender que firmar un registro confirma que la actividad fue ejecutada.</li>
+          <li>La fotografía debe mostrar el resultado real, no una imagen antigua.</li>
+          <li>Falsificar un registro destruye la trazabilidad del sistema.</li>
         </ul>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">19</span><h2>Errores comunes que deben corregirse</h2></div>
+        <div class="section-title"><span class="number">22</span><h2>Errores comunes que deben corregirse</h2></div>
         <div class="case-grid">
-          <div class="danger-card"><h4>En higiene personal</h4><ul><li>Lavado de manos incompleto.</li><li>Uso incorrecto o prolongado de guantes.</li><li>Uso de objetos personales en áreas de producción.</li><li>No reportar síntomas o heridas.</li></ul></div>
-          <div class="danger-card"><h4>En proceso</h4><ul><li>Mezclar crudos y cocidos.</li><li>Dejar alimentos expuestos.</li><li>No controlar tiempo y temperatura.</li><li>Usar utensilios o superficies sin higienizar.</li></ul></div>
-          <div class="danger-card"><h4>En bodega</h4><ul><li>Producto sin rotulación.</li><li>Producto directamente en piso.</li><li>Falta de FIFO/FEFO.</li><li>Químicos cerca de alimentos.</li></ul></div>
-          <div class="danger-card"><h4>En evidencia</h4><ul><li>Registros incompletos.</li><li>Firmas sin ejecución real.</li><li>Correcciones no reportadas.</li><li>Falta de seguimiento a desviaciones.</li></ul></div>
+          <div class="danger-card"><h4>En higiene personal</h4><ul><li>Lavado de manos incompleto.</li><li>Uso incorrecto o prolongado de guantes.</li><li>Uso de objetos personales en áreas de producción.</li><li>No reportar síntomas o heridas.</li><li>Cabello descubierto.</li></ul></div>
+          <div class="danger-card"><h4>En proceso</h4><ul><li>Mezclar crudos y cocidos.</li><li>Dejar alimentos expuestos.</li><li>No controlar tiempo y temperatura.</li><li>Usar utensilios o superficies sin higienizar.</li><li>Alimentos sin identificación.</li><li>Crudos sobre alimentos listos.</li></ul></div>
+          <div class="danger-card"><h4>En bodega</h4><ul><li>Producto sin rotulación.</li><li>Producto directamente en piso.</li><li>Falta de FIFO/FEFO.</li><li>Químicos cerca de alimentos.</li><li>Termómetros o registros inexistentes.</li><li>Basura abierta o rebosada.</li></ul></div>
+          <div class="danger-card"><h4>En evidencia</h4><ul><li>Registros incompletos.</li><li>Firmas sin ejecución real.</li><li>Correcciones no reportadas.</li><li>Falta de seguimiento a desviaciones.</li><li>Checklist firmado sin haber realizado la tarea.</li></ul></div>
         </div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">20</span><h2>Evidencias reales de nuestra operación</h2></div>
+        <div class="section-title"><span class="number">23</span><h2>Evidencias reales de nuestra operación</h2></div>
         <p>Las evidencias reales permiten reconocer desviaciones y convertirlas en aprendizaje. La finalidad no es señalar personas, sino corregir prácticas para proteger la inocuidad.</p>
         <div class="case-grid">
-          <div class="case-card"><h4>Área desordenada</h4><p>El desorden dificulta la limpieza, impide verificar controles, favorece accidentes y aumenta el riesgo de contaminación.</p></div>
-          <div class="case-card"><h4>Producto sin identificación</h4><p>Todo alimento almacenado debe estar rotulado, fechado y ubicado correctamente para asegurar trazabilidad y rotación.</p></div>
-          <div class="case-card"><h4>Residuos mal manejados</h4><p>Los residuos expuestos o acumulados atraen plagas, generan olores y pueden contaminar superficies, utensilios o alimentos.</p></div>
-          <div class="case-card"><h4>Registro incompleto</h4><p>Si el control no se registra correctamente, no existe evidencia suficiente de que el procedimiento se cumplió.</p></div>
+          <div class="evidence-card">
+            <img src="imagen_pag_57.jpg" alt="Área de producción con residuos y desorden">
+            <h4>Área de producción sucia</h4>
+            <p class="error-text">¿Qué está mal? El área de producción debe mantenerse limpia durante toda la jornada. La limpieza no se deja únicamente para el cierre.</p>
+            <p class="correct-text">Acción correcta: Retirar residuos y derrames de inmediato. Mantener equipos y superficies sin acumulaciones. Ejecutar limpieza por frecuencia y responsable.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_58.jpg" alt="Drenaje con residuos y humedad">
+            <h4>Pisos y drenajes con residuos</h4>
+            <p class="error-text">¿Qué está mal? Los pisos y drenajes deben estar siempre tapados, no deben mantener residuos ni suciedad acumulada. La humedad favorece contaminación, malos olores y vectores.</p>
+            <p class="correct-text">Acción correcta: Secar derrames inmediatamente. Limpiar y desinfectar drenajes. Mantener utensilios de limpieza en su área asignada.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_59.jpg" alt="Refrigeradora con alimentos abiertos y derramados">
+            <h4>Almacenamiento en refrigeración</h4>
+            <p class="error-text">¿Qué está mal? No se deben almacenar alimentos abiertos, derramados, en fundas sin identificación o en equipos con suciedad visible.</p>
+            <p class="correct-text">Acción correcta: Recipiente grado alimentario. Tapado o film completo. Nombre del producto. Fecha de elaboración/apertura. Limpieza programada.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_60.jpg" alt="Cámara de frío desordenada">
+            <h4>Cámara de frío desordenada</h4>
+            <p class="error-text">¿Qué está mal? La cámara debe permitir circulación de aire, limpieza y separación de productos. El desorden dificulta FIFO/PEPS y aumenta el riesgo de contaminación cruzada.</p>
+            <p class="correct-text">Acción correcta: Nada directamente en el piso. Separar por familia. Rotular. Respetar PEPS/PCPS. Mantener pasillos y superficies despejados.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_61.jpg" alt="Empaque abierto de alimento">
+            <h4>Empaque abierto</h4>
+            <p class="error-text">¿Qué está mal? Un empaque abierto deja de proteger adecuadamente el alimento. El producto debe ser transferido a un recipiente apto, protegido e identificado.</p>
+            <p class="correct-text">Acción correcta: Cerrar correctamente. Evitar exposición. Identificar lote/fecha cuando aplique. Desechar si existe deterioro o contaminación.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_62.jpg" alt="Fundas anónimas sin identificación">
+            <h4>Fundas anónimas</h4>
+            <p class="error-text">¿Qué está mal? Bollos, humitas, preparaciones y materias primas no pueden quedar como 'fundas anónimas'. Sin identificación no existe trazabilidad.</p>
+            <p class="correct-text">Acción correcta: Nombre. Fecha de elaboración/recepción. Fecha límite de uso cuando corresponda. Responsable. Aplicar PEPS/PCPs.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_63.jpg" alt="Proteínas crudas mal almacenadas">
+            <h4>Proteínas crudas sin cubrir</h4>
+            <p class="error-text">¿Qué está mal? Las proteínas crudas deben permanecer cubiertas y separadas. El contacto, goteo o almacenamiento inadecuado puede contaminar otros alimentos.</p>
+            <p class="correct-text">Acción correcta: Film o tapa íntegra. Recipiente limpio. Separación por especie. Crudos debajo de alimentos listos para consumo. Rotulación.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_64.jpg" alt="Restos vegetales en el piso">
+            <h4>Restos vegetales en el piso</h4>
+            <p class="error-text">¿Qué está mal? Restos vegetales y derrames en el piso son una no conformidad de limpieza y pueden atraer vectores.</p>
+            <p class="correct-text">Acción correcta: Limpiar al momento. Registrar limpieza. No esperar al final del turno. Revisar pisos, estanterías, esquinas y drenajes.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_65.jpg" alt="Alimento mal protegido en cámara">
+            <h4>Alimento mal protegido</h4>
+            <p class="error-text">¿Qué está mal? Todo alimento almacenado debe estar protegido frente a contaminación ambiental, contacto y manipulación.</p>
+            <p class="correct-text">Acción correcta: Cubrir completamente. Usar recipientes aptos. No reutilizar film deteriorado. Rotular antes de ingresar a cámara.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_66.jpg" alt="Envase original reutilizado para otro fin">
+            <h4>Envase original reutilizado</h4>
+            <p class="error-text">¿Qué está mal? Un envase original de vinagre no debe convertirse en un recipiente genérico para agua u otras sustancias sin identificación. Esto genera riesgo de confusión y pérdida de trazabilidad.</p>
+            <p class="correct-text">Acción correcta: Usar recipientes destinados al uso previsto. Identificar contenido. Mantener tapa. Separar químicos de alimentos.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_67.jpg" alt="Funda con solo nombre del alimento">
+            <h4>Falta de fecha en etiqueta</h4>
+            <p class="error-text">¿Qué está mal? Escribir únicamente el nombre del alimento no permite controlar antigüedad ni rotación.</p>
+            <p class="correct-text">Acción correcta: Nombre + fecha de elaboración/recepción + fecha límite de uso cuando corresponda + responsable.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_68.jpg" alt="Residuos y alimentos en el piso">
+            <h4>Residuos y alimentos en el piso</h4>
+            <p class="error-text">¿Qué está mal? Empaques, alimentos y residuos en el piso son fuente de contaminación y riesgo de accidentes.</p>
+            <p class="correct-text">Acción correcta: Recoger inmediatamente. Limpiar y desinfectar. Mantener tachos con funda y tapa. Nunca usar el piso como almacenamiento.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_69.jpg" alt="Sacos de alimentos en el piso">
+            <h4>Alimentos secos en el piso</h4>
+            <p class="error-text">¿Qué está mal? Arroz, legumbres y otros secos deben almacenarse elevados, protegidos y ordenados. El piso no es una estantería.</p>
+            <p class="correct-text">Acción correcta: Usar pallets/estanterías sanitarias. Separación del piso y paredes. Envases cerrados. PEPS/PCPS. Inspección de plagas.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_70.jpg" alt="Materias primas mal almacenadas">
+            <h4>Materias primas en área inadecuada</h4>
+            <p class="error-text">¿Qué está mal? Tomate, limón, legumbres y otras materias primas requieren áreas limpias, recipientes adecuados y separación del piso.</p>
+            <p class="correct-text">Acción correcta: Clasificar. Retirar deteriorados. Mantener en jabas limpias. Evitar contacto con piso. Lavar/desinfectar según procedimiento.</p>
+          </div>
+          <div class="evidence-card">
+            <img src="imagen_pag_71.jpg" alt="Jabas mal utilizadas">
+            <h4>Uso incorrecto de jabas</h4>
+            <p class="error-text">¿Qué está mal? Las jabas y utensilios definidos para una familia de alimentos no deben utilizarse indistintamente para otras. Si una jaba azul está asignada a mariscos, no debe usarse para pollo.</p>
+            <p class="correct-text">Acción correcta: Respetar el código interno. Lavar y desinfectar entre usos. Identificar jabas y áreas. Supervisar cumplimiento.</p>
+          </div>
         </div>
+        <div class="important">BPM = prevenir antes de corregir.</div>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">21</span><h2>Lo que esperamos de cada colaborador</h2></div>
+        <div class="section-title"><span class="number">24</span><h2>Consecuencias del incumplimiento</h2></div>
         <ul>
-          <li>Trabajar con orden, higiene y responsabilidad durante toda la jornada.</li>
-          <li>Prevenir contaminación antes de que ocurra.</li>
-          <li>Cumplir procedimientos internos sin improvisar.</li>
-          <li>Registrar controles de forma real y completa.</li>
-          <li>Reportar riesgos, desviaciones, síntomas, fallas, plagas o productos no conformes.</li>
-          <li>Aplicar acciones correctivas cuando se detecte una condición insegura.</li>
+          <li>El uso completo del uniforme y las normas de higiene son obligaciones internas.</li>
+          <li>Los incumplimientos deben documentarse.</li>
+          <li>La reincidencia puede escalar disciplinariamente conforme al Reglamento Interno.</li>
+          <li>Cuando corresponda una sanción pecuniaria, debe ser aplicada por el responsable autorizado, de forma proporcional y dentro del límite previsto en el Reglamento.</li>
+          <li>No toda falta recibe automáticamente el máximo de multa.</li>
+          <li>El estándar debe ser igual para todos los colaboradores.</li>
+          <li>No esperar una auditoría del cliente para exigir cumplimiento.</li>
         </ul>
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">22</span><h2>15 reglas que deben quedar grabadas</h2></div>
+        <div class="section-title"><span class="number">25</span><h2>Lo que esperamos de cada colaborador</h2></div>
+        <ul>
+          <li>Mantener orden y limpieza durante toda la jornada.</li>
+          <li>Proteger, identificar y fechar correctamente los alimentos.</li>
+          <li>Respetar PEPS/PCPS y la segregación de materias primas.</li>
+          <li>Evitar cualquier práctica que pueda generar contaminación cruzada.</li>
+          <li>Reportar inmediatamente derrames, plagas, productos deteriorados o condiciones inseguras.</li>
+          <li>Cumplir los procedimientos, registros y controles establecidos por INARI.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <div class="section-title"><span class="number">26</span><h2>15 reglas que deben quedar grabadas</h2></div>
         <div class="grid">
           <ul><li>Uniforme completo.</li><li>Cabello cubierto.</li><li>Manos limpias.</li><li>Guantes bien usados.</li><li>No joyas ni hábitos contaminantes.</li><li>Reportar síntomas.</li><li>Separar crudo y cocido.</li><li>Controlar tiempo y temperatura.</li></ul>
           <ul><li>Controlar alérgenos.</li><li>Rotular y fechar.</li><li>Aplicar FIFO/FEFO.</li><li>Nada directamente en el piso.</li><li>Desechos separados y tachos tapados.</li><li>Limpiar antes de desinfectar.</li><li>Registrar lo que realmente se hizo.</li></ul>
@@ -511,7 +679,7 @@
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">23</span><h2>Compromiso BPM INARI</h2></div>
+        <div class="section-title"><span class="number">27</span><h2>Compromiso BPM INARI</h2></div>
         <p>El cumplimiento de las BPM exige disciplina operativa. Cada colaborador debe comprometerse a aplicar lo aprendido y a corregir inmediatamente las prácticas que puedan afectar la inocuidad.</p>
         <ul>
           <li>Mantener orden y limpieza durante toda la jornada.</li>
@@ -531,7 +699,7 @@
       </section>
 
       <section class="content-section">
-        <div class="section-title"><span class="number">24</span><h2>Prueba de capacitación</h2></div>
+        <div class="section-title"><span class="number">28</span><h2>Prueba de capacitación</h2></div>
         <div class="important">Al continuar, iniciarás el proceso de prueba sobre lo revisado en este contenido. Asegúrate de registrar tus datos y respuestas correctamente.</div>
         <div class="quiz-button-container">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSewNEurcj7Cihi2JGrt10FnDH1rfyExFzJTPL58rISNejZWcA/viewform?usp=publish-editor" class="quiz-button" target="_blank" rel="noopener noreferrer">Ir a la prueba</a>
