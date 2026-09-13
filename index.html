@@ -250,8 +250,32 @@
     .evidence-card { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: #fbfbfe; display: flex; flex-direction: column; gap: 12px; }
     .evidence-card img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); object-fit: cover; max-height: 220px; }
     .evidence-card h4 { color: var(--brand); margin-bottom: 0; }
-    .evidence-card .error-text { color: var(--danger); font-weight: 700; }
-    .evidence-card .correct-text { color: var(--success-text); font-weight: 700; }
+
+    /* Correcciones para aplicar color a párrafos y listas dentro de error-text y correct-text */
+    .evidence-card .error-text,
+    .evidence-card .error-text p,
+    .evidence-card .error-text li {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .evidence-card .correct-text,
+    .evidence-card .correct-text p,
+    .evidence-card .correct-text li {
+      color: var(--success-text);
+      font-weight: 700;
+    }
+
+    .evidence-card .error-text p,
+    .evidence-card .correct-text p {
+      margin: 0 0 6px 0;
+    }
+
+    .evidence-card .error-text ul,
+    .evidence-card .correct-text ul {
+      margin-top: 4px;
+      padding-left: 22px;
+    }
 
     @media (max-width: 900px) {
       .registration-page, .grid, .grid-3, .scale, .case-grid, .info-cards, .flow { grid-template-columns: 1fr; }
@@ -551,96 +575,266 @@
         <div class="section-title"><span class="number">23</span><h2>Evidencias reales de nuestra operación</h2></div>
         <p>Las evidencias reales permiten reconocer desviaciones y convertirlas en aprendizaje. La finalidad no es señalar personas, sino corregir prácticas para proteger la inocuidad.</p>
         <div class="case-grid">
+
           <div class="evidence-card">
             <img src="imagen_pag_57.jpg" alt="Área de producción con residuos y desorden">
             <h4>Área de producción sucia</h4>
-            <p class="error-text">¿Qué está mal? El área de producción debe mantenerse limpia durante toda la jornada. La limpieza no se deja únicamente para el cierre.</p>
-            <p class="correct-text">Acción correcta: Retirar residuos y derrames de inmediato. Mantener equipos y superficies sin acumulaciones. Ejecutar limpieza por frecuencia y responsable.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? El área de producción debe mantenerse limpia durante toda la jornada. La limpieza no se deja únicamente para el cierre.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Retirar residuos y derrames de inmediato.</li>
+                <li>Mantener equipos y superficies sin acumulaciones.</li>
+                <li>Ejecutar limpieza por frecuencia y responsable.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_58.jpg" alt="Drenaje con residuos y humedad">
             <h4>Pisos y drenajes con residuos</h4>
-            <p class="error-text">¿Qué está mal? Los pisos y drenajes deben estar siempre tapados, no deben mantener residuos ni suciedad acumulada. La humedad favorece contaminación, malos olores y vectores.</p>
-            <p class="correct-text">Acción correcta: Secar derrames inmediatamente. Limpiar y desinfectar drenajes. Mantener utensilios de limpieza en su área asignada.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Los pisos y drenajes deben estar siempre tapados, no deben mantener residuos ni suciedad acumulada. La humedad favorece contaminación, malos olores y vectores.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Secar derrames inmediatamente.</li>
+                <li>Limpiar y desinfectar drenajes.</li>
+                <li>Mantener utensilios de limpieza en su área asignada.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_59.jpg" alt="Refrigeradora con alimentos abiertos y derramados">
             <h4>Almacenamiento en refrigeración</h4>
-            <p class="error-text">¿Qué está mal? No se deben almacenar alimentos abiertos, derramados, en fundas sin identificación o en equipos con suciedad visible.</p>
-            <p class="correct-text">Acción correcta: Recipiente grado alimentario. Tapado o film completo. Nombre del producto. Fecha de elaboración/apertura. Limpieza programada.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? No se deben almacenar alimentos abiertos, derramados, en fundas sin identificación o en equipos con suciedad visible.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Recipiente grado alimentario.</li>
+                <li>Tapado o film completo.</li>
+                <li>Nombre del producto.</li>
+                <li>Fecha de elaboración/apertura.</li>
+                <li>Limpieza programada.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_60.jpg" alt="Cámara de frío desordenada">
             <h4>Cámara de frío desordenada</h4>
-            <p class="error-text">¿Qué está mal? La cámara debe permitir circulación de aire, limpieza y separación de productos. El desorden dificulta FIFO/PEPS y aumenta el riesgo de contaminación cruzada.</p>
-            <p class="correct-text">Acción correcta: Nada directamente en el piso. Separar por familia. Rotular. Respetar PEPS/PCPS. Mantener pasillos y superficies despejados.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? La cámara debe permitir circulación de aire, limpieza y separación de productos. El desorden dificulta FIFO/PEPS y aumenta el riesgo de contaminación cruzada.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Nada directamente en el piso.</li>
+                <li>Separar por familia.</li>
+                <li>Rotular.</li>
+                <li>Respetar PEPS/PCPS.</li>
+                <li>Mantener pasillos y superficies despejados.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_61.jpg" alt="Empaque abierto de alimento">
             <h4>Empaque abierto</h4>
-            <p class="error-text">¿Qué está mal? Un empaque abierto deja de proteger adecuadamente el alimento. El producto debe ser transferido a un recipiente apto, protegido e identificado.</p>
-            <p class="correct-text">Acción correcta: Cerrar correctamente. Evitar exposición. Identificar lote/fecha cuando aplique. Desechar si existe deterioro o contaminación.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Un empaque abierto deja de proteger adecuadamente el alimento. El producto debe ser transferido a un recipiente apto, protegido e identificado.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Cerrar correctamente.</li>
+                <li>Evitar exposición.</li>
+                <li>Identificar lote/fecha cuando aplique.</li>
+                <li>Desechar si existe deterioro o contaminación.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_62.jpg" alt="Fundas anónimas sin identificación">
             <h4>Fundas anónimas</h4>
-            <p class="error-text">¿Qué está mal? Bollos, humitas, preparaciones y materias primas no pueden quedar como 'fundas anónimas'. Sin identificación no existe trazabilidad.</p>
-            <p class="correct-text">Acción correcta: Nombre. Fecha de elaboración/recepción. Fecha límite de uso cuando corresponda. Responsable. Aplicar PEPS/PCPs.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Bollos, humitas, preparaciones y materias primas no pueden quedar como 'fundas anónimas'. Sin identificación no existe trazabilidad.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Nombre.</li>
+                <li>Fecha de elaboración/recepción.</li>
+                <li>Fecha límite de uso cuando corresponda.</li>
+                <li>Responsable.</li>
+                <li>Aplicar PEPS/PCPs.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_63.jpg" alt="Proteínas crudas mal almacenadas">
             <h4>Proteínas crudas sin cubrir</h4>
-            <p class="error-text">¿Qué está mal? Las proteínas crudas deben permanecer cubiertas y separadas. El contacto, goteo o almacenamiento inadecuado puede contaminar otros alimentos.</p>
-            <p class="correct-text">Acción correcta: Film o tapa íntegra. Recipiente limpio. Separación por especie. Crudos debajo de alimentos listos para consumo. Rotulación.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Las proteínas crudas deben permanecer cubiertas y separadas. El contacto, goteo o almacenamiento inadecuado puede contaminar otros alimentos.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Film o tapa íntegra.</li>
+                <li>Recipiente limpio.</li>
+                <li>Separación por especie.</li>
+                <li>Crudos debajo de alimentos listos para consumo.</li>
+                <li>Rotulación.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_64.jpg" alt="Restos vegetales en el piso">
             <h4>Restos vegetales en el piso</h4>
-            <p class="error-text">¿Qué está mal? Restos vegetales y derrames en el piso son una no conformidad de limpieza y pueden atraer vectores.</p>
-            <p class="correct-text">Acción correcta: Limpiar al momento. Registrar limpieza. No esperar al final del turno. Revisar pisos, estanterías, esquinas y drenajes.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Restos vegetales y derrames en el piso son una no conformidad de limpieza y pueden atraer vectores.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Limpiar al momento.</li>
+                <li>Registrar limpieza.</li>
+                <li>No esperar al final del turno.</li>
+                <li>Revisar pisos, estanterías, esquinas y drenajes.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_65.jpg" alt="Alimento mal protegido en cámara">
             <h4>Alimento mal protegido</h4>
-            <p class="error-text">¿Qué está mal? Todo alimento almacenado debe estar protegido frente a contaminación ambiental, contacto y manipulación.</p>
-            <p class="correct-text">Acción correcta: Cubrir completamente. Usar recipientes aptos. No reutilizar film deteriorado. Rotular antes de ingresar a cámara.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Todo alimento almacenado debe estar protegido frente a contaminación ambiental, contacto y manipulación.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Cubrir completamente.</li>
+                <li>Usar recipientes aptos.</li>
+                <li>No reutilizar film deteriorado.</li>
+                <li>Rotular antes de ingresar a cámara.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_66.jpg" alt="Envase original reutilizado para otro fin">
             <h4>Envase original reutilizado</h4>
-            <p class="error-text">¿Qué está mal? Un envase original de vinagre no debe convertirse en un recipiente genérico para agua u otras sustancias sin identificación. Esto genera riesgo de confusión y pérdida de trazabilidad.</p>
-            <p class="correct-text">Acción correcta: Usar recipientes destinados al uso previsto. Identificar contenido. Mantener tapa. Separar químicos de alimentos.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Un envase original de vinagre no debe convertirse en un recipiente genérico para agua u otras sustancias sin identificación. Esto genera riesgo de confusión y pérdida de trazabilidad.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Usar recipientes destinados al uso previsto.</li>
+                <li>Identificar contenido.</li>
+                <li>Mantener tapa.</li>
+                <li>Separar químicos de alimentos.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_67.jpg" alt="Funda con solo nombre del alimento">
             <h4>Falta de fecha en etiqueta</h4>
-            <p class="error-text">¿Qué está mal? Escribir únicamente el nombre del alimento no permite controlar antigüedad ni rotación.</p>
-            <p class="correct-text">Acción correcta: Nombre + fecha de elaboración/recepción + fecha límite de uso cuando corresponda + responsable.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Escribir únicamente el nombre del alimento no permite controlar antigüedad ni rotación.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Nombre.</li>
+                <li>Fecha de elaboración/recepción.</li>
+                <li>Fecha límite de uso cuando corresponda.</li>
+                <li>Responsable.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_68.jpg" alt="Residuos y alimentos en el piso">
             <h4>Residuos y alimentos en el piso</h4>
-            <p class="error-text">¿Qué está mal? Empaques, alimentos y residuos en el piso son fuente de contaminación y riesgo de accidentes.</p>
-            <p class="correct-text">Acción correcta: Recoger inmediatamente. Limpiar y desinfectar. Mantener tachos con funda y tapa. Nunca usar el piso como almacenamiento.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Empaques, alimentos y residuos en el piso son fuente de contaminación y riesgo de accidentes.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Recoger inmediatamente.</li>
+                <li>Limpiar y desinfectar.</li>
+                <li>Mantener tachos con funda y tapa.</li>
+                <li>Nunca usar el piso como almacenamiento.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_69.jpg" alt="Sacos de alimentos en el piso">
             <h4>Alimentos secos en el piso</h4>
-            <p class="error-text">¿Qué está mal? Arroz, legumbres y otros secos deben almacenarse elevados, protegidos y ordenados. El piso no es una estantería.</p>
-            <p class="correct-text">Acción correcta: Usar pallets/estanterías sanitarias. Separación del piso y paredes. Envases cerrados. PEPS/PCPS. Inspección de plagas.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Arroz, legumbres y otros secos deben almacenarse elevados, protegidos y ordenados. El piso no es una estantería.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Usar pallets/estanterías sanitarias.</li>
+                <li>Separación del piso y paredes.</li>
+                <li>Envases cerrados.</li>
+                <li>PEPS/PCPS.</li>
+                <li>Inspección de plagas.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_70.jpg" alt="Materias primas mal almacenadas">
             <h4>Materias primas en área inadecuada</h4>
-            <p class="error-text">¿Qué está mal? Tomate, limón, legumbres y otras materias primas requieren áreas limpias, recipientes adecuados y separación del piso.</p>
-            <p class="correct-text">Acción correcta: Clasificar. Retirar deteriorados. Mantener en jabas limpias. Evitar contacto con piso. Lavar/desinfectar según procedimiento.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Tomate, limón, legumbres y otras materias primas requieren áreas limpias, recipientes adecuados y separación del piso.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Clasificar.</li>
+                <li>Retirar deteriorados.</li>
+                <li>Mantener en jabas limpias.</li>
+                <li>Evitar contacto con piso.</li>
+                <li>Lavar/desinfectar según procedimiento.</li>
+              </ul>
+            </div>
           </div>
+
           <div class="evidence-card">
             <img src="imagen_pag_71.jpg" alt="Jabas mal utilizadas">
             <h4>Uso incorrecto de jabas</h4>
-            <p class="error-text">¿Qué está mal? Las jabas y utensilios definidos para una familia de alimentos no deben utilizarse indistintamente para otras. Si una jaba azul está asignada a mariscos, no debe usarse para pollo.</p>
-            <p class="correct-text">Acción correcta: Respetar el código interno. Lavar y desinfectar entre usos. Identificar jabas y áreas. Supervisar cumplimiento.</p>
+            <div class="error-text">
+              <p>¿Qué está mal? Las jabas y utensilios definidos para una familia de alimentos no deben utilizarse indistintamente para otras. Si una jaba azul está asignada a mariscos, no debe usarse para pollo.</p>
+            </div>
+            <div class="correct-text">
+              <p>Acción correcta:</p>
+              <ul>
+                <li>Respetar el código interno.</li>
+                <li>Lavar y desinfectar entre usos.</li>
+                <li>Identificar jabas y áreas.</li>
+                <li>Supervisar cumplimiento.</li>
+              </ul>
+            </div>
           </div>
+
         </div>
         <div class="important">BPM = prevenir antes de corregir.</div>
       </section>
